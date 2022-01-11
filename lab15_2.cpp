@@ -19,3 +19,34 @@ int main(){
 	showMatrix(B);
 	return 0;
 }
+
+void showMatrix(const bool M[][N]){
+	for(int i = 0; i < N; i++){
+		for(int j = 0; j < N; j++){
+			cout << M[i][j] << " ";
+		}
+		cout << endl;
+	}
+}
+
+void inputMatrix(double M[][N]){
+	for(int i = 0; i < N; i++){
+		cout << "Row " << i+1 << ": ";
+		for(int j = 0; j < N; j++){
+			cin >> M[i][j];
+		}
+	}
+}
+
+void findLocalMax(const double M[][N], bool B[][N]){
+	for(int i = 0; i < N; i++){
+		for(int j = 0; j < N; j++){
+			if(i == 0 || i == N-1 || j == 0 || j == N-1)
+				B[i][j] = false;
+			else if(M[i][j] >= M[i-1][j] && M[i][j] >= M[i+1][j] && M[i][j] >= M[i][j-1] && M[i][j] >= M[i][j+1])
+				B[i][j] = true;
+			else
+				B[i][j] = false;
+		}
+	}
+}
